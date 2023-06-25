@@ -35,8 +35,7 @@ defined('ABSPATH') || exit;
             <label class="lukio_user_forms_login_checkbox_label" for="rememberme"><?php echo esc_html($active_options['login_remember']); ?></label>
         </div>
 
-        <input type="hidden" name="action" value="lukio_user_forms_login">
-        <input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect_to); ?>">
+        <?php do_action('lukio_user_forms_login_before_button'); ?>
         <button class="lukio_user_forms_submit" type="submit"><?php echo esc_html($active_options['login_submit']); ?></button>
     </form>
 

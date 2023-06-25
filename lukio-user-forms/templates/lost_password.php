@@ -23,7 +23,7 @@ defined('ABSPATH') || exit;
             <?php Lukio_User_Forms_Setup::echo_input_error_span('user_login', $active_options['required_error']); ?>
         </div>
 
-        <input type="hidden" name="action" value="lukio_user_forms_lost_password">
+        <?php do_action('lukio_user_forms_lost_password_before_button'); ?>
         <button class="lukio_user_forms_submit" type="submit"><?php echo esc_html($active_options['lost_submit']); ?></button>
 
         <p class="lukio_user_forms_success"><?php echo esc_html($active_options['lost_success_message']); ?></p>

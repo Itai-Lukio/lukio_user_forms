@@ -82,9 +82,7 @@ defined('ABSPATH') || exit;
         }
         ?>
 
-        <input type="hidden" name="action" value="lukio_user_forms_register">
-        <input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect_to); ?>">
-        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('luf_register'); ?>">
+        <?php do_action('lukio_user_forms_register_before_button'); ?>
         <button class="lukio_user_forms_submit" type="submit"><?php echo esc_html($active_options['register_submit']); ?></button>
     </form>
 

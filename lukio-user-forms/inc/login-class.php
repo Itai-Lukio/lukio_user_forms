@@ -8,6 +8,12 @@ defined('ABSPATH') || exit;
 class Lukio_User_Forms_login
 {
     /**
+     * holds the hidden inputs to be printed for a form
+     * @var array hidden input array 
+     */
+    private $hiddens = array();
+
+    /**
      * add the needed actions and shortcode for the class, run needed setup functions
      * 
      * @author Itai Dotan
@@ -17,6 +23,10 @@ class Lukio_User_Forms_login
         add_shortcode('lukio_login_form', array($this, 'login_form'));
 
         add_action('wp_footer', array($this, 'maybe_print_password_reset'), 10);
+
+        add_action('lukio_user_forms_login_before_button', array($this, 'login_hiddens'));
+        add_action('lukio_user_forms_password_reset_before_button', array($this, 'reset_hiddens'));
+        add_action('lukio_user_forms_lost_password_before_button', array($this, 'lost_hiddens'));
 
         $this->register_class_ajaxs();
         $this->fix_no_script_forms_action();
@@ -100,6 +110,12 @@ class Lukio_User_Forms_login
         $reset_key = sanitize_text_field($_GET[Lukio_User_Forms_Setup::PASSWORD_RESET_VAR]);
         $login = sanitize_text_field($_GET['login']);
 
+        $this->hiddens['password_reset'] = array(
+            'action' => 'lukio_user_forms_password_reset',
+            'key' => esc_attr($reset_key),
+            'login' => esc_attr($login)
+        );
+
         include Lukio_User_Forms_Setup::get_template_path('password_reset');
 
         Lukio_User_Forms_Setup::add_password_strength_core();
@@ -139,6 +155,14 @@ class Lukio_User_Forms_login
         $active_options = $option_class->get_active_options();
         $show_lost = isset($_GET['lostpassword']);
         $redirect_to = !empty($atts) && isset($atts['redirect_to']) ? $atts['redirect_to'] : get_site_url();
+
+        $this->hiddens['login'] = array(
+            'action' => 'lukio_user_forms_login',
+            'redirect_to' => esc_attr($redirect_to)
+        );
+        $this->hiddens['lost_password'] = array(
+            'action' => 'lukio_user_forms_lost_password'
+        );
 
         ob_start();
 
@@ -333,6 +357,54 @@ class Lukio_User_Forms_login
         }
         echo json_encode($response);
         die;
+    }
+
+    /**
+     * print login form hidden inputs
+     * 
+     * @author Itai Dotan
+     */
+    public function login_hiddens()
+    {
+        $this->print_hiddens('login');
+    }
+
+    /**
+     * print password reset form hidden inputs
+     * 
+     * @author Itai Dotan
+     */
+    public function reset_hiddens()
+    {
+        $this->print_hiddens('password_reset');
+    }
+
+    /**
+     * print lost password form hidden inputs
+     * 
+     * @author Itai Dotan
+     */
+    public function lost_hiddens()
+    {
+        $this->print_hiddens('lost_password');
+    }
+
+    /**
+     * print form hidden inputs of the given form
+     * 
+     * @param string $form form index in the class $hidden array
+     * 
+     * @author Itai Dotan
+     */
+    private function print_hiddens($form)
+    {
+        if (!isset($this->hiddens[$form])) {
+            return;
+        }
+
+        foreach ($this->hiddens[$form] as $name => $value) {
+            echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
+        }
     }
 }
 

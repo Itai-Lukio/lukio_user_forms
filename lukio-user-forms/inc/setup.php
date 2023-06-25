@@ -7,6 +7,10 @@ defined('ABSPATH') || exit;
  */
 class Lukio_User_Forms_Setup
 {
+    /**
+     * plugin var used for password reset key
+     * @var string password reset var
+     */
     const PASSWORD_RESET_VAR = 'luf_reset';
 
     /**

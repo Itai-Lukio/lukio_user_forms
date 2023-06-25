@@ -8,6 +8,12 @@ defined('ABSPATH') || exit;
 class Lukio_User_Forms_registration
 {
     /**
+     * holds the hidden inputs to be printed for a form
+     * @var array hidden input array 
+     */
+    private $hiddens = array();
+
+    /**
      * add the needed actions and shortcode for the class
      * 
      * @author Itai Dotan
@@ -15,6 +21,8 @@ class Lukio_User_Forms_registration
     public function __construct()
     {
         add_shortcode('lukio_register_form', array($this, 'register_form'));
+
+        add_action('lukio_user_forms_register_before_button', array($this, 'register_hiddens'));
 
         $this->register_class_ajaxs();
     }
@@ -230,6 +238,12 @@ class Lukio_User_Forms_registration
         $repeat_password = $active_options['register_pass2_bool'];
         $redirect_to = !empty($atts) && isset($atts['redirect_to']) ? $atts['redirect_to'] : get_site_url();
 
+        $this->hiddens['register'] = array(
+            'action' => 'lukio_user_forms_register',
+            'redirect_to' => $redirect_to,
+            'nonce' => wp_create_nonce('luf_register')
+        );
+
         $togglable_fields = array();
         foreach ($option_class->get_togglable_register_options() as $option) {
             if ($active_options[$option . '_bool']) {
@@ -246,6 +260,22 @@ class Lukio_User_Forms_registration
         Lukio_User_Forms_Setup::add_password_strength_core();
 
         return ob_get_clean();
+    }
+
+    /**
+     * print register form hidden inputs
+     * 
+     * @author Itai Dotan
+     */
+    public function register_hiddens()
+    {
+        if (!isset($this->hiddens['register'])) {
+            return;
+        }
+
+        foreach ($this->hiddens['register'] as $name => $value) {
+            echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
+        }
     }
 }
 

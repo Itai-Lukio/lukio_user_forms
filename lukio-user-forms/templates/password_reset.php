@@ -33,9 +33,7 @@ defined('ABSPATH') || exit;
                 ?>
             </div>
 
-            <input type="hidden" name="key" value="<?php echo esc_attr($reset_key) ?>">
-            <input type="hidden" name="login" value="<?php echo esc_attr($login) ?>">
-            <input type="hidden" name="action" value="lukio_user_forms_password_reset">
+            <?php do_action('lukio_user_forms_password_reset_before_button'); ?>
             <button class="lukio_user_forms_submit" type="submit"><?php echo esc_html($active_options['save_password']); ?></button>
 
             <p class="lukio_user_forms_success"><?php echo esc_html($active_options['reset_success_message']); ?></p>
