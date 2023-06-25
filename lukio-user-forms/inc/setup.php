@@ -1,0 +1,220 @@
+<?php
+
+defined('ABSPATH') || exit;
+
+/**
+ * Lukio user forms plugin setup class
+ */
+class Lukio_User_Forms_Setup
+{
+    const PASSWORD_RESET_VAR = 'luf_reset';
+
+    /**
+     * add the needed actions and shortcode for the class
+     * 
+     * @author Itai Dotan
+     */
+    public function __construct()
+    {
+        add_action('init', array($this, 'init'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueue'));
+
+        add_shortcode('lukio_combo_form', array($this, 'combo_form'));
+    }
+
+    /**
+     * init action to set up the plugin
+     * 
+     * @author Itai Dotan
+     */
+    public function init()
+    {
+        load_plugin_textdomain('lukio-user-forms', false, 'lukio-user-forms/languages');
+
+        Lukio_User_Forms_Options_Class::get_instance();
+    }
+
+    /**
+     * enqueue and localize the plugin styles and scripts
+     * 
+     * @author Itai Dotan
+     */
+    public function enqueue()
+    {
+        wp_enqueue_style('dashicons');
+        wp_enqueue_style('lukio_user_forms_stylesheet', LUKIO_USER_FORMS_URL . 'assets/css/lukio-user-forms.min.css', array(), filemtime(LUKIO_USER_FORMS_DIR . 'assets/css/lukio-user-forms.min.css'));
+        wp_add_inline_style('lukio_user_forms_stylesheet', $this->get_extra_css());
+
+        wp_enqueue_script('lukio_user_forms_script', LUKIO_USER_FORMS_URL . 'assets/js/lukio-user-forms.min.js', array('jquery'), filemtime(LUKIO_USER_FORMS_DIR . 'assets/js/lukio-user-forms.min.js'), true);
+        wp_localize_script('lukio_user_forms_script', 'lukio_user_forms_data', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            /* TRANSLATORS: use wordpress defaul. does not need translation */
+            'show_password' => __('Show password'),
+            /* TRANSLATORS: use wordpress defaul. does not need translation */
+            'hide_password' => __('Hide password'),
+            'password_reset' => Lukio_User_Forms_Setup::PASSWORD_RESET_VAR,
+            'password_strength' => Lukio_User_Forms_Options_Class::get_active_option('password_strength'),
+        ));
+    }
+
+    /**
+     * return css string of the user extra css
+     * 
+     * @return string css string
+     * 
+     * @author Itai Dotan
+     */
+    private function get_extra_css()
+    {
+        $option_class = Lukio_User_Forms_Options_Class::get_instance();
+        $opener = "/*\nCreated by Lukio User Forms Plugin\nExtra css set in the plugin option page\n*/\n";
+        //trim and remove multi whitespaces from the user css
+        return $opener . trim(preg_replace('/(?:\s\s+)/', '', $option_class->get_active_options()['extra_css']));
+    }
+
+    /**
+     * function of the shortcode 'lukio_combo_form', output the form markup
+     * 
+     * @param array $atts user defined attributes in shortcode tag, default `[]`
+     * 
+     * @return string form markup
+     * 
+     * @author Itai Dotan
+     */
+    public function combo_form()
+    {
+        $show_registration = isset($_GET['registration']);
+        $to_login = Lukio_User_Forms_Options_Class::get_active_option('combo_to_login');
+        $to_register = Lukio_User_Forms_Options_Class::get_active_option('combo_to_register');
+
+        ob_start();
+
+        include Lukio_User_Forms_Setup::get_template_path('combo_form');
+
+        return ob_get_clean();
+    }
+
+    /**
+     * get the template path.
+     * 
+     * get template from the active theme when the template was overridden, plugin template file when not.
+     * 
+     * @param string $template_name name of the file to get the path for
+     * @return string full path to the template file
+     * 
+     * @author Itai Dotan
+     */
+    public static function get_template_path($template_name)
+    {
+        $theme_dir = get_stylesheet_directory();
+        if (file_exists("$theme_dir/lukio-user-forms/$template_name.php")) {
+            return "$theme_dir/lukio-user-forms/$template_name.php";
+        }
+        return LUKIO_USER_FORMS_DIR . "templates/$template_name.php";
+    }
+
+    /**
+     * make sure the needed scripts for password strength will be present
+     * 
+     * @author Itai Dotan
+     */
+    public static function add_password_strength_core()
+    {
+        if (wp_doing_ajax()) {
+            global $wp_scripts;
+
+            // remove 'jquery' dependency before printing as it is already in the page
+            $dependency = $wp_scripts->query('user-profile', 'registered');
+            if ($dependency !== false) {
+                $array_key = array_search('jquery', $dependency->deps);
+                unset($dependency->deps[$array_key]);
+            }
+
+            $wp_scripts->print_scripts('user-profile');
+        } else {
+            wp_enqueue_script('user-profile');
+        }
+    }
+
+    /**
+     * echo password input
+     * 
+     * @param string $id id for the input
+     * @param string $placeholder placeholder for the input
+     * @param string $name name of the input, default `pwd`
+     * @param bool $strength_msg true to add password strength check, default `false`
+     * @param string $extra_class extra class to add to the wrapper, default ``
+     * 
+     * @author Itai Dotan
+     */
+    public static function echo_password_input($id, $placeholder, $name = 'pwd', $strength_msg = false, $extra_class = '')
+    {
+        // when loaded in ajax no need to check that scripts are enabled
+        $no_js = wp_doing_ajax() ? '' : ' no_js';
+?>
+        <div class="lukio_user_forms_password_inpout_wrapper<?php echo $extra_class != '' ? ' ' . esc_attr(trim($extra_class)) : ''; ?>">
+            <input class="lukio_user_forms_input password<?php echo $no_js;
+                                                            echo $strength_msg ? ' strength_check' : ''; ?>" type="password" id="<?php echo esc_attr($id); ?>" name="<?php echo esc_attr($name); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" autocomplete="current-password" spellcheck="false">
+            <button type="button" class="lukio_user_forms_password_toggle hide_no_js<?php echo $no_js; ?>" aria-label="<?php
+                                                                                                                        /* TRANSLATORS: use wordpress defaul. does not need translation */
+                                                                                                                        echo esc_attr(__('Show password'));
+                                                                                                                        ?>">
+                <span class="lukio_user_forms_password_toggle_icon dashicons  dashicons-visibility" aria-hidden="true"></span>
+            </button>
+        </div>
+        <?php
+        if ($strength_msg) {
+            echo '<div class="lukio_user_forms_password_strength empty"></div>';
+        }
+    }
+
+    /**
+     * echo input error_span
+     * 
+     * @param string $input input id, add to the error span class for use in selectors
+     * @param string $message message to show in the errror
+     * 
+     * @author Itai Dotan
+     */
+    public static function echo_input_error_span($input, $message)
+    {
+        ?>
+        <span class="lukio_user_forms_input_error <?php echo esc_attr($input); ?>"><?php echo esc_html($message); ?></span>
+    <?php
+    }
+
+    /**
+     * echo popup close button
+     * 
+     * @author Itai Dotan
+     */
+    public static function echo_popup_close_button()
+    {
+    ?>
+        <button class="lukio_user_forms_popup_close dashicons dashicons-no" type="button">
+
+            <span class="screen-reader-text"><?php
+                                                /* TRANSLATORS: use wordpress defaul. does not need translation */
+                                                echo __('Close');
+                                                ?></span>
+        </button>
+<?php
+    }
+
+    /**
+     * echo error class when the field is one of the missing fields
+     * 
+     * @param string $field field name
+     * @param array $missing_fields array of missing fields
+     * 
+     * @author Itai Dotan
+     */
+    public static function maybe_error_class($field, $missing_fields)
+    {
+        if (in_array($field, $missing_fields)) {
+            echo ' error';
+        };
+    }
+}
+
+new Lukio_User_Forms_Setup();
