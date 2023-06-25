@@ -262,7 +262,7 @@ class Lukio_User_Forms_Admin_Class
     ?>
         <div class="lukio_user_forms_extra_checkbox<?php echo $template_class; ?>">
             <?php Lukio_User_Forms_Admin_Class::print_switch_input("extra_checkboxs[$output_index][required]", $template ? false : $required, __('Make checkbox required', 'lukio-user-forms'), true); ?>
-            <?php Lukio_User_Forms_Admin_Class::print_text_option("extra_checkboxs[<?php echo $output_index; ?>][meta]", $meta, __('Meta key', 'lukio-user-forms')); ?>
+            <?php Lukio_User_Forms_Admin_Class::print_text_option("extra_checkboxs[$output_index][meta]", $meta, __('Meta key', 'lukio-user-forms')); ?>
             <textarea class="lukio_user_forms_extra_checkbox_text" name="extra_checkboxs[<?php echo $output_index; ?>][description]" cols="30" rows="2"><?php echo $description; ?></textarea>
             <button class="lukio_user_forms_extra_checkboxs_remove button button-large<?php echo $template_class; ?>" type="button"><?php echo __('Remove checkbox', 'lukio-user-forms'); ?></button>
         </div>
