@@ -8,12 +8,6 @@ defined('ABSPATH') || exit;
 class Lukio_User_Forms_login
 {
     /**
-     * holds the hidden inputs to be printed for a form
-     * @var array hidden input array 
-     */
-    private $hiddens = array();
-
-    /**
      * add the needed actions and shortcode for the class, run needed setup functions
      * 
      * @author Itai Dotan
@@ -107,14 +101,6 @@ class Lukio_User_Forms_login
 
         $option_class = Lukio_User_Forms_Options_Class::get_instance();
         $active_options = $option_class->get_active_options();
-        $reset_key = sanitize_text_field($_GET[Lukio_User_Forms_Setup::PASSWORD_RESET_VAR]);
-        $login = sanitize_text_field($_GET['login']);
-
-        $this->hiddens['password_reset'] = array(
-            'action' => 'lukio_user_forms_password_reset',
-            'key' => esc_attr($reset_key),
-            'login' => esc_attr($login)
-        );
 
         include Lukio_User_Forms_Setup::get_template_path('password_reset');
 
@@ -143,26 +129,15 @@ class Lukio_User_Forms_login
     /**
      * function of the shortcode 'lukio_login_form', output the form markup
      * 
-     * @param array $atts user defined attributes in shortcode tag, default `[]`
-     * 
      * @return string form markup
      * 
      * @author Itai Dotan
      */
-    public function login_form($atts = [])
+    public function login_form()
     {
         $option_class = Lukio_User_Forms_Options_Class::get_instance();
         $active_options = $option_class->get_active_options();
         $show_lost = isset($_GET['lostpassword']);
-        $redirect_to = !empty($atts) && isset($atts['redirect_to']) ? $atts['redirect_to'] : get_site_url();
-
-        $this->hiddens['login'] = array(
-            'action' => 'lukio_user_forms_login',
-            'redirect_to' => esc_attr($redirect_to)
-        );
-        $this->hiddens['lost_password'] = array(
-            'action' => 'lukio_user_forms_lost_password'
-        );
 
         ob_start();
 
@@ -366,7 +341,10 @@ class Lukio_User_Forms_login
      */
     public function login_hiddens()
     {
-        $this->print_hiddens('login');
+        $this->print_hiddens(array(
+            'action' => 'lukio_user_forms_login',
+            'redirect_to' => esc_attr(get_site_url())
+        ));
     }
 
     /**
@@ -376,7 +354,11 @@ class Lukio_User_Forms_login
      */
     public function reset_hiddens()
     {
-        $this->print_hiddens('password_reset');
+        $this->print_hiddens(array(
+            'action' => 'lukio_user_forms_password_reset',
+            'key' => esc_attr(sanitize_text_field($_GET[Lukio_User_Forms_Setup::PASSWORD_RESET_VAR])),
+            'login' => esc_attr(sanitize_text_field($_GET['login']))
+        ));
     }
 
     /**
@@ -386,23 +368,21 @@ class Lukio_User_Forms_login
      */
     public function lost_hiddens()
     {
-        $this->print_hiddens('lost_password');
+        $this->print_hiddens(array(
+            'action' => 'lukio_user_forms_lost_password'
+        ));
     }
 
     /**
-     * print form hidden inputs of the given form
+     * print form hidden inputs
      * 
-     * @param string $form form index in the class $hidden array
+     * @param array $actions array of hiddens to print
      * 
      * @author Itai Dotan
      */
-    private function print_hiddens($form)
+    private function print_hiddens($actions)
     {
-        if (!isset($this->hiddens[$form])) {
-            return;
-        }
-
-        foreach ($this->hiddens[$form] as $name => $value) {
+        foreach ($actions as $name => $value) {
             echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
         }
     }

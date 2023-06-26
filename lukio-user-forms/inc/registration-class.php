@@ -8,12 +8,6 @@ defined('ABSPATH') || exit;
 class Lukio_User_Forms_registration
 {
     /**
-     * holds the hidden inputs to be printed for a form
-     * @var array hidden input array 
-     */
-    private $hiddens = array();
-
-    /**
      * add the needed actions and shortcode for the class
      * 
      * @author Itai Dotan
@@ -219,14 +213,12 @@ class Lukio_User_Forms_registration
 
     /**
      * function of the shortcode 'lukio_register_form', output the form markup
-     * 
-     * @param array $atts user defined attributes in shortcode tag, default `[]`
-     * 
+     *  
      * @return string form markup
      * 
      * @author Itai Dotan
      */
-    public function register_form($atts = [])
+    public function register_form()
     {
         $posted_result = $this->posted_registration();
         $posted_errors = isset($posted_result['errors']) ? $posted_result['errors'] : array();
@@ -236,13 +228,6 @@ class Lukio_User_Forms_registration
         $active_options = $option_class->get_active_options();
         $use_id = $active_options['register_user_login_bool'];
         $repeat_password = $active_options['register_pass2_bool'];
-        $redirect_to = !empty($atts) && isset($atts['redirect_to']) ? $atts['redirect_to'] : get_site_url();
-
-        $this->hiddens['register'] = array(
-            'action' => 'lukio_user_forms_register',
-            'redirect_to' => $redirect_to,
-            'nonce' => wp_create_nonce('luf_register')
-        );
 
         $togglable_fields = array();
         foreach ($option_class->get_togglable_register_options() as $option) {
@@ -269,11 +254,13 @@ class Lukio_User_Forms_registration
      */
     public function register_hiddens()
     {
-        if (!isset($this->hiddens['register'])) {
-            return;
-        }
+        $actions = array(
+            'action' => 'lukio_user_forms_register',
+            'redirect_to' => esc_attr(get_site_url()),
+            'nonce' => wp_create_nonce('luf_register')
+        );
 
-        foreach ($this->hiddens['register'] as $name => $value) {
+        foreach ($actions as $name => $value) {
             echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
         }
     }
