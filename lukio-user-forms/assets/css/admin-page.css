@@ -251,12 +251,43 @@ input[type="checkbox"].lukio_user_forms_switch_input {
   margin-bottom: 10px;
 }
 
-.lukio_user_forms_extra_checkboxs_add.button {
+.lukio_user_forms_extra_checkboxes_add.button {
   margin-top: 10px;
 }
 
 .lukio_user_forms_extra_checkbox .lukio_user_forms_label {
   width: max-content;
+}
+
+.lukio_user_forms_extra_checkbox .lukio_user_forms_label.textarea {
+  width: 100%;
+}
+
+.flex_no_shrink {
+  flex-shrink: 0;
+}
+
+.lukio_user_forms_label.textarea .mce-tinymce {
+  border: solid 1px #dedede;
+  width: 100%;
+}
+
+.lukio_user_forms_extra_checkbox_text {
+  width: 100%;
+}
+
+.extra_checkboxes_help {
+  cursor: pointer;
+}
+
+.extra_checkboxes_help_tooltip_wrappper {
+  height: 0;
+  overflow: hidden;
+}
+
+.extra_checkboxes_help_tooltip {
+  list-style: disc;
+  margin-inline-start: 20px;
 }
 
 @media screen and (min-width: 600px) {

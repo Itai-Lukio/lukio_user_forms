@@ -16,6 +16,7 @@ class Lukio_User_Forms_Admin_Class
     {
         add_action('admin_menu', array($this, 'admin_menu'));
         add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
+        add_action('admin_footer', array($this, 'enqueue_editor'));
 
         add_action('plugin_action_links_' . LUKIO_USER_FORMS_PLUGIN_MAIN_FILE, array($this, 'plugin_action_links'));
     }
@@ -50,6 +51,18 @@ class Lukio_User_Forms_Admin_Class
             wp_enqueue_style('lukio_user_forms_admin', LUKIO_USER_FORMS_URL . "assets/css/admin-page.min.css", array(), filemtime(LUKIO_USER_FORMS_DIR . 'assets/css/admin-page.min.css'));
             wp_enqueue_script('lukio_user_forms_admin', LUKIO_USER_FORMS_URL . "assets/js/admin-page.min.js", array(), filemtime(LUKIO_USER_FORMS_DIR . 'assets/js/admin-page.min.js'), true);
         };
+    }
+
+    /**
+     * enqueue editor style in the footer to keep wp enqueue order. when added to the admin_enqueue the order is mismatched
+     * 
+     * @author Itai Dotan
+     */
+    public static function enqueue_editor()
+    {
+        if (get_current_screen()->base == 'toplevel_page_lukio_user_forms') {
+            wp_enqueue_editor();
+        }
     }
 
     /**
@@ -101,8 +114,8 @@ class Lukio_User_Forms_Admin_Class
             case 'absint':
                 $option = absint($_POST[$key]);
                 break;
-            case 'extra_checkboxs':
-                $extra_checkboxs = array();
+            case 'extra_checkboxes':
+                $option = array();
 
                 foreach ($_POST[$key] as $index => $data) {
                     // skip the template inputs
@@ -110,7 +123,7 @@ class Lukio_User_Forms_Admin_Class
                         continue;
                     }
 
-                    $description = wp_kses_post($data['description']);
+                    $description = str_replace(['<p>', '</p>'], ['', '<br>'], wp_kses_post($data['description']));
                     $meta = sanitize_text_field($data['meta']);
 
                     // skip when meta or description is empty or meta includes invalid character
@@ -118,14 +131,12 @@ class Lukio_User_Forms_Admin_Class
                         continue;
                     }
 
-                    $extra_checkboxs[] = array(
+                    $option[] = array(
                         'required' => isset($data['required']) ? true : false,
                         'meta' => $meta,
                         'description' => $description,
                     );
                 }
-
-                $option = $extra_checkboxs;
                 break;
         }
         return $option;
@@ -254,6 +265,16 @@ class Lukio_User_Forms_Admin_Class
     <?php
     }
 
+    /**
+     * print register extra checkbox input
+     * 
+     * @param int $index index of the checkbox in the loop, use `-1` to print the template
+     * @param bool $required true when the checkbox is required
+     * @param string $meta checkbox meta
+     * @param string $description checkbox description
+     * 
+     * @author Itai Dotan
+     */
     public static function print_extra_checkbox($index, $required, $meta, $description)
     {
         $template = $index == -1;
@@ -261,10 +282,13 @@ class Lukio_User_Forms_Admin_Class
         $template_class = $template ? ' template' : '';
     ?>
         <div class="lukio_user_forms_extra_checkbox<?php echo $template_class; ?>">
-            <?php Lukio_User_Forms_Admin_Class::print_switch_input("extra_checkboxs[$output_index][required]", $template ? false : $required, __('Make checkbox required', 'lukio-user-forms'), true); ?>
-            <?php Lukio_User_Forms_Admin_Class::print_text_option("extra_checkboxs[$output_index][meta]", $meta, __('Meta key', 'lukio-user-forms')); ?>
-            <textarea class="lukio_user_forms_extra_checkbox_text" name="extra_checkboxs[<?php echo $output_index; ?>][description]" cols="30" rows="2"><?php echo $description; ?></textarea>
-            <button class="lukio_user_forms_extra_checkboxs_remove button button-large<?php echo $template_class; ?>" type="button"><?php echo __('Remove checkbox', 'lukio-user-forms'); ?></button>
+            <?php Lukio_User_Forms_Admin_Class::print_switch_input("extra_checkboxes[$output_index][required]", $template ? false : $required, __('Make checkbox required', 'lukio-user-forms'), true); ?>
+            <?php Lukio_User_Forms_Admin_Class::print_text_option("extra_checkboxes[$output_index][meta]", $meta, __('Meta key', 'lukio-user-forms')); ?>
+            <label class="lukio_user_forms_label textarea" for="extra_checkboxes_textarea_<?php echo $output_index; ?>">
+                <span class="flex_no_shrink"><?php echo __('Checkbox text', 'lukio-user-forms'); ?></span>
+                <textarea class="lukio_user_forms_extra_checkbox_text<?php echo $template_class; ?>" id="extra_checkboxes_textarea_<?php echo $output_index; ?>" name="extra_checkboxes[<?php echo $output_index; ?>][description]" cols="30" rows="2"><?php echo $description; ?></textarea>
+            </label>
+            <button class="lukio_user_forms_extra_checkboxes_remove button button-large<?php echo $template_class; ?>" type="button"><?php echo __('Remove checkbox', 'lukio-user-forms'); ?></button>
         </div>
 <?php
     }

@@ -293,8 +293,8 @@ class Lukio_User_Forms_Options_Class
                 /* TRANSLATORS: use wordpress defaul. does not need translation */
                 'default' => __('Register')
             ),
-            'extra_checkboxs' => array(
-                'type' => 'extra_checkboxs',
+            'extra_checkboxes' => array(
+                'type' => 'extra_checkboxes',
                 'label' => __('Extra register checkbox', 'lukio-user-forms'),
                 'default' => array()
             ),

@@ -236,7 +236,12 @@ body {
 .lukio_user_forms_input_wrapper.checkbox {
     max-width: 220px;
     display: flex;
+    align-items: baseline;
     gap: 5px;
+}
+
+.lukio_user_forms_meta_label {
+    text-align: initial;
 }
 
 /*** combo forms ***/

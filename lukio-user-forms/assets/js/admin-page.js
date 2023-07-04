@@ -29,6 +29,25 @@ jQuery(document).ready(function ($) {
     window.history.replaceState({}, "", window.location.pathname + replace_query_param('tab', new_tab_index, window.location.search));
   });
 
+  /**
+   * initialize the editor on the extra checkbox textarea which havent yet been initialized
+   * 
+   * @author Itai Dotan
+   */
+  function textarea_to_visual() {
+    let textareas = $('.lukio_user_forms_extra_checkbox_text:not(.template):not(.tiny_init)');
+    textareas.each(function () {
+      let el = $(this);
+      el.addClass('tiny_init')
+      wp.editor.initialize(el.attr('id'), {
+        tinymce: {
+          toolbar1: 'bold,italic,link'
+        }
+      });
+    });
+  }
+  textarea_to_visual();
+
   // copy the shortcode to clipboard  
   $('.lukio_user_forms_options_shortcode_button').on('click', function () {
     let btn = $(this);
@@ -51,15 +70,33 @@ jQuery(document).ready(function ($) {
 
   $(document)
     // remove extra checkbox row
-    .on('click', '.lukio_user_forms_extra_checkboxs_remove:not(.template)', function () {
+    .on('click', '.lukio_user_forms_extra_checkboxes_remove:not(.template)', function () {
       $(this).closest('.lukio_user_forms_extra_checkbox').remove();
     })
 
     // add new extra checkbox row
-    .on('click', '.lukio_user_forms_extra_checkboxs_add', function () {
+    .on('click', '.lukio_user_forms_extra_checkboxes_add', function () {
       let btn = $(this),
-        wrapper = btn.closest('.lukio_user_forms_extra_checkboxs_wrapper'),
+        wrapper = btn.closest('.lukio_user_forms_extra_checkboxes_wrapper'),
         template_html = wrapper.find('.lukio_user_forms_extra_checkbox.template').prop('outerHTML');
       btn.before(template_html.replaceAll('%d', Date.now()).replaceAll('template', ''));
+      textarea_to_visual();
+    })
+
+    .on('click', '.extra_checkboxes_help', function () {
+      let wrapper = $('.extra_checkboxes_help_tooltip_wrappper'),
+        new_height = 0;
+
+      // get the wrapper height before opening the wrapper
+      if (!wrapper.hasClass('show')) {
+        wrapper.css('height', 'auto');
+        new_height = wrapper.css('height');
+        wrapper.css('height', '');
+      }
+
+      wrapper.animate({ height: new_height }, 400, function () {
+        wrapper.css('height', new_height ? 'auto' : '');
+      });
+      wrapper.toggleClass('show');
     });
 });

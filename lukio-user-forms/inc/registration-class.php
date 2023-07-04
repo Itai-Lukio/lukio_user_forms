@@ -89,7 +89,7 @@ class Lukio_User_Forms_registration
 
         // when user been created add checked checkboxs to user meta
         if (!is_wp_error($result)) {
-            foreach ($active_options['extra_checkboxs'] as $checkbox_data) {
+            foreach ($active_options['extra_checkboxes'] as $checkbox_data) {
                 if (isset($_POST[$checkbox_data['meta']])) {
                     update_user_meta($result, $checkbox_data['meta'], true);
                 }
@@ -135,7 +135,7 @@ class Lukio_User_Forms_registration
             }
         }
 
-        foreach ($active_options['extra_checkboxs'] as $checkbox_data) {
+        foreach ($active_options['extra_checkboxes'] as $checkbox_data) {
             if ($checkbox_data['required'] && !isset($_POST[$checkbox_data['meta']])) {
                 $missing[] = $checkbox_data['meta'];
             }

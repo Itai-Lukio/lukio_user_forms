@@ -62,13 +62,22 @@ foreach ($option_class->get_togglable_register_options() as $option_index) {
 }
 ?>
 
-<h4 class="lukio_user_forms_subpart_title"><?php echo $options_schematics['extra_checkboxs']['label'] ?></h4>
-<div class="lukio_user_forms_extra_checkboxs_wrapper">
+<h4 class="lukio_user_forms_subpart_title"><?php echo $options_schematics['extra_checkboxes']['label']; ?><span class="extra_checkboxes_help dashicons dashicons-editor-help"></span></h4>
+<div class="extra_checkboxes_help_tooltip_wrappper">
+    <ul class="extra_checkboxes_help_tooltip">
+        <li class="extra_checkboxes_help_tooltip_li"><?php echo __('Checkbox set with an empty meta or text, will not be saved', 'lukio-user-forms'); ?></li>
+        <li class="extra_checkboxes_help_tooltip_li"><?php echo __('Meta can only include lowercase English characters and underscores', 'lukio-user-forms'); ?></li>
+        <li class="extra_checkboxes_help_tooltip_li"><?php echo __('Meta containing invalid characters will not be saved', 'lukio-user-forms'); ?></li>
+        <li class="extra_checkboxes_help_tooltip_li"><?php echo __('It is highly recommended to prefix metas, {prefix}_{meta_name}', 'lukio-user-forms'); ?></li>
+    </ul>
+</div>
+
+<div class="lukio_user_forms_extra_checkboxes_wrapper">
     <?php
     Lukio_User_Forms_Admin_Class::print_extra_checkbox(-1, '', '', '', '',);
-    foreach ($active_options['extra_checkboxs'] as $index => $checkbox_data) {
+    foreach ($active_options['extra_checkboxes'] as $index => $checkbox_data) {
         Lukio_User_Forms_Admin_Class::print_extra_checkbox($index, $checkbox_data['required'], $checkbox_data['meta'], $checkbox_data['description']);
     }
     ?>
-    <button class="lukio_user_forms_extra_checkboxs_add button button-large" type="button"><?php echo __('Add checkbox', 'lukio-user-forms'); ?></button>
+    <button class="lukio_user_forms_extra_checkboxes_add button button-large" type="button"><?php echo __('Add checkbox', 'lukio-user-forms'); ?></button>
 </div>

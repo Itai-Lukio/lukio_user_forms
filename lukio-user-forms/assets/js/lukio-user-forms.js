@@ -251,7 +251,7 @@ jQuery(document).ready(function ($) {
         input = btn.siblings('.lukio_user_forms_input.password'),
         show = input.attr('type') == 'password';
       input.attr('type', show ? 'text' : 'password');
-      btn.attr('aria-label', show ? lukio_user_forms_data.show_password : lukio_user_forms_data.hide_password);
+      btn.attr('aria-label', show ? lukio_user_forms_data.hide_password : lukio_user_forms_data.show_password);
       btn.find('.lukio_user_forms_password_toggle_icon')
         .removeClass(show ? 'dashicons-visibility' : 'dashicons-hidden')
         .addClass(show ? 'dashicons-hidden' : 'dashicons-visibility');

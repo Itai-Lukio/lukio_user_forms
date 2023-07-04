@@ -69,7 +69,7 @@ defined('ABSPATH') || exit;
         <?php
         }
 
-        foreach ($active_options['extra_checkboxs'] as $checkbox_data) {
+        foreach ($active_options['extra_checkboxes'] as $checkbox_data) {
         ?>
             <div class="lukio_user_forms_input_wrapper checkbox<?php
                                                                 echo $checkbox_data['required'] ? ' luf_required' : '';
