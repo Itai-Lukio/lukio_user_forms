@@ -26,10 +26,10 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="lukio_user_forms_input_wrapper">
-                <label class="lukio_user_forms_login_input_label align_start" for="repeat_password"><?php echo esc_html($active_options['password_repeat_label']); ?></label>
+                <label class="lukio_user_forms_login_input_label align_start" for="reset_repeat_password"><?php echo esc_html($active_options['password_repeat_label']); ?></label>
                 <?php
-                Lukio_User_Forms_Setup::echo_password_input('repeat_password', $active_options['password_placeholder'], 'pass2');
-                Lukio_User_Forms_Setup::echo_input_error_span('repeat_password', $active_options['passwords_dont_match']);
+                Lukio_User_Forms_Setup::echo_password_input('reset_repeat_password', $active_options['password_placeholder'], 'pass2');
+                Lukio_User_Forms_Setup::echo_input_error_span('reset_repeat_password', $active_options['passwords_dont_match']);
                 ?>
             </div>
 

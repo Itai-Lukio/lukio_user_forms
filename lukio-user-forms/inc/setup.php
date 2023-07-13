@@ -21,9 +21,16 @@ class Lukio_User_Forms_Setup
     public function __construct()
     {
         add_action('init', array($this, 'init'));
+
         add_action('wp_enqueue_scripts', array($this, 'enqueue'));
+        add_action('wp_print_footer_scripts', array($this, 'print_socials_scripts'));
+
+        add_action('lukio_user_forms_socials', array($this, 'print_socials_buttons'));
 
         add_shortcode('lukio_combo_form', array($this, 'combo_form'));
+
+        add_action('wp_ajax_lukio_user_forms_google_login', array($this, 'google_ajax'));
+        add_action('wp_ajax_nopriv_lukio_user_forms_google_login', array($this, 'google_ajax'));
     }
 
     /**
@@ -58,6 +65,8 @@ class Lukio_User_Forms_Setup
             'hide_password' => __('Hide password'),
             'password_reset' => Lukio_User_Forms_Setup::PASSWORD_RESET_VAR,
             'password_strength' => Lukio_User_Forms_Options_Class::get_active_option('password_strength'),
+            'integration_redirect' => get_site_url(),
+            'google_client' => Lukio_User_Forms_Options_Class::get_google_client(),
         ));
     }
 
@@ -96,6 +105,53 @@ class Lukio_User_Forms_Setup
         include Lukio_User_Forms_Setup::get_template_path('combo_form');
 
         return ob_get_clean();
+    }
+
+    /**
+     * print socials_buttons template
+     * 
+     * @author Itai Dotan
+     */
+    public function print_socials_buttons()
+    {
+        include Lukio_User_Forms_Setup::get_template_path('socials_buttons');
+    }
+
+    /**
+     * print socials external scripts
+     * 
+     * @author Itai Dotan
+     */
+    public function print_socials_scripts()
+    {
+        if (Lukio_User_Forms_Options_Class::get_google_client()) {
+?>
+            <script src="https://accounts.google.com/gsi/client"></script>
+        <?php
+        }
+    }
+
+    /**
+     * handle the google ajax using 'Lukio_User_Forms_Google' class
+     * 
+     * @author Itai Dotan
+     */
+    public function google_ajax()
+    {
+        $response = array();
+        try {
+            require_once LUKIO_USER_FORMS_DIR . 'integrations/google.php';
+            Lukio_User_Forms_Google::handle_request($_POST['token']);
+
+            // when no exception been thrown the user has been set
+            $response['success'] = true;
+            $response['redirect'] = sanitize_text_field($_POST['redirect_to']);
+        } catch (Exception $e) {
+            $response['success'] = false;
+            $response['error'] = $e->getMessage();
+        }
+        echo json_encode($response);
+        die;
     }
 
     /**
@@ -155,7 +211,7 @@ class Lukio_User_Forms_Setup
     {
         // when loaded in ajax no need to check that scripts are enabled
         $no_js = wp_doing_ajax() ? '' : ' no_js';
-?>
+        ?>
         <div class="lukio_user_forms_password_inpout_wrapper<?php echo $extra_class != '' ? ' ' . esc_attr(trim($extra_class)) : ''; ?>">
             <input class="lukio_user_forms_input password<?php echo $no_js;
                                                             echo $strength_msg ? ' strength_check' : ''; ?>" type="password" id="<?php echo esc_attr($id); ?>" name="<?php echo esc_attr($name); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" autocomplete="current-password" spellcheck="false">

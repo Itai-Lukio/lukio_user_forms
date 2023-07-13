@@ -10,6 +10,8 @@ jQuery(document).ready(function ($) {
    * 
    * @param {jQuery} form form to check
    * @returns {Bool} true when all the form required inputs are valid
+   * 
+   * @author Itai Dotan
    */
   function check_required_inputs(form) {
     let valid = true;
@@ -44,6 +46,8 @@ jQuery(document).ready(function ($) {
   /**
    * base on wp check_pass_strength
    * @param {jQuery} input form to check
+   * 
+   * @author Itai Dotan
    */
   function check_password_strength(input) {
     let msg = input.closest('.lukio_user_forms_password_inpout_wrapper').siblings('.lukio_user_forms_password_strength'),
@@ -345,5 +349,53 @@ jQuery(document).ready(function ($) {
       e.preventDefault();
       $(this).closest('.lukio_user_forms_combo_wrapper').find('.lukio_user_forms_combo_form_wrapper').toggleClass('hide_content');
     });
+
+
+  /*** socials ***/
+
+  /**
+   * get the CredentialResponse from google client and send it to the server
+   * 
+   * @param {object} response CredentialResponse passed from google client
+   * 
+   * @author Itai Dotan
+   */
+  function handle_google_credential_response(response) {
+    $.ajax({
+      method: 'POST',
+      url: lukio_user_forms_data.ajax_url,
+      data: { action: 'lukio_user_forms_google_login', token: response.credential, redirect_to: lukio_user_forms_data.integration_redirect },
+      success: function (result) {
+        if (result) {
+          result = JSON.parse(result);
+          result.success && result.redirect != 'reload' ? location.href = result.redirect : location.reload();
+        }
+      }
+    });
+  };
+
+  /**
+   * when the google_client exist initialize the client and render google buttons
+   * 
+   * @author Itai Dotan
+   */
+  function initialize_google() {
+    if (lukio_user_forms_data.google_client == false) {
+      return;
+    }
+
+    google.accounts.id.initialize({
+      client_id: lukio_user_forms_data.google_client,
+      callback: handle_google_credential_response,
+    });
+
+    $('.lukio_user_forms_google_iframe_wrapper').each(function () {
+      google.accounts.id.renderButton(
+        this,
+        { theme: "outline", size: "large" }
+      );
+    });
+  }
+  initialize_google();
 });
 

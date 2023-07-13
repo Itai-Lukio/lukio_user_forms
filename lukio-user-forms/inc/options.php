@@ -284,7 +284,7 @@ class Lukio_User_Forms_Options_Class
             'register_email_placeholder' => array(
                 'type' => 'text',
                 'label' => __('Email placeholder', 'lukio-user-forms'),
-                'default' => __('e@mail.com', 'lukio-user-forms')
+                'default' => 'e@mail.com'
             ),
             'register_submit' => array(
                 'type' => 'text',
@@ -297,6 +297,22 @@ class Lukio_User_Forms_Options_Class
                 'type' => 'extra_checkboxes',
                 'label' => __('Extra register checkbox', 'lukio-user-forms'),
                 'default' => array()
+            ),
+            // socials
+            'use_google' => array(
+                'type' => 'bool',
+                'label' => __('Use Google login', 'lukio-user-forms'),
+                'default' => false,
+            ),
+            'google_client' => array(
+                'type' => 'text',
+                'label' => __('Google client ID', 'lukio-user-forms'),
+                'default' => '',
+            ),
+            'google_client_secret' => array(
+                'type' => 'text',
+                'label' => __('Google client secret', 'lukio-user-forms'),
+                'default' => '',
             ),
             'extra_css' => array(
                 'type' => 'textarea',
@@ -476,5 +492,24 @@ class Lukio_User_Forms_Options_Class
             return $active_options[$option];
         }
         return null;
+    }
+
+    /**
+     * get the google client id
+     * 
+     * @return string|false client id when use_google option is active and google_client option is not empty, false otherwise
+     * 
+     * @author Itai Dotan
+     */
+    public static function get_google_client()
+    {
+        $instance = self::get_instance();
+        $active_options = $instance->get_active_options();
+
+        if ($active_options['use_google'] && $active_options['google_client'] && $active_options['google_client_secret']) {
+            return $active_options['google_client'];
+        }
+
+        return false;
     }
 }

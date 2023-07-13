@@ -83,6 +83,7 @@ jQuery(document).ready(function ($) {
       textarea_to_visual();
     })
 
+    // open and close the checkboxes help
     .on('click', '.extra_checkboxes_help', function () {
       let wrapper = $('.extra_checkboxes_help_tooltip_wrappper'),
         new_height = 0;

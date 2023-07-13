@@ -18,9 +18,9 @@ defined('ABSPATH') || exit;
     <form class="lukio_user_forms_form lost_password" action="<?php echo esc_url(network_site_url('wp-login.php?action=lostpassword', 'login_post')); ?>" method="post">
 
         <div class="lukio_user_forms_input_wrapper luf_required">
-            <label class="lukio_user_forms_login_input_label align_start" for="user_login"><?php echo esc_html($active_options['user_login_label']); ?></label>
-            <input class="lukio_user_forms_input" type="text" id="user_login" name="user_login" placeholder="<?php echo esc_attr($active_options['user_login_placeholder']); ?>">
-            <?php Lukio_User_Forms_Setup::echo_input_error_span('user_login', $active_options['required_error']); ?>
+            <label class="lukio_user_forms_login_input_label align_start" for="lost_user_login"><?php echo esc_html($active_options['user_login_label']); ?></label>
+            <input class="lukio_user_forms_input" type="text" id="lost_user_login" name="user_login" placeholder="<?php echo esc_attr($active_options['user_login_placeholder']); ?>">
+            <?php Lukio_User_Forms_Setup::echo_input_error_span('lost_user_login', $active_options['required_error']); ?>
         </div>
 
         <?php do_action('lukio_user_forms_lost_password_before_button'); ?>

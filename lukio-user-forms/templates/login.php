@@ -39,6 +39,8 @@ defined('ABSPATH') || exit;
         <button class="lukio_user_forms_submit" type="submit"><?php echo esc_html($active_options['login_submit']); ?></button>
     </form>
 
+    <?php do_action('lukio_user_forms_socials'); ?>
+
     <a class="lukio_user_forms_login_lost_switch" href="<?php echo esc_url(home_url($_SERVER['REDIRECT_URL'] . '?lostpassword')); ?>"><?php
                                                                                                                                         /* TRANSLATORS: use wordpress defaul. does not need translation */
                                                                                                                                         echo __('Lost your password?');

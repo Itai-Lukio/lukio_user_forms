@@ -290,6 +290,10 @@ input[type="checkbox"].lukio_user_forms_switch_input {
   margin-inline-start: 20px;
 }
 
+.lukio_user_forms_inputs_wrapper.socials {
+  margin-top: 10px;
+}
+
 @media screen and (min-width: 600px) {
   .lukio_user_forms_label {
     flex-direction: row;

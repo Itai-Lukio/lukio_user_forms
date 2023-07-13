@@ -21,9 +21,9 @@ defined('ABSPATH') || exit;
         if ($use_id) {
         ?>
             <div class="lukio_user_forms_input_wrapper luf_required<?php Lukio_User_Forms_Setup::maybe_error_class('user_login', $missing_fields); ?>">
-                <label class="lukio_user_forms_login_input_label align_start" for="user_login"><?php echo esc_html($active_options['register_user_login']); ?></label>
-                <input class="lukio_user_forms_input" type="text" id="user_login" name="user_login" placeholder="<?php echo esc_attr($active_options['user_login_placeholder']); ?>">
-                <?php Lukio_User_Forms_Setup::echo_input_error_span('user_login', $active_options['required_error']); ?>
+                <label class="lukio_user_forms_login_input_label align_start" for="register_user_login"><?php echo esc_html($active_options['register_user_login']); ?></label>
+                <input class="lukio_user_forms_input" type="text" id="register_user_login" name="user_login" placeholder="<?php echo esc_attr($active_options['user_login_placeholder']); ?>">
+                <?php Lukio_User_Forms_Setup::echo_input_error_span('register_user_login', $active_options['required_error']); ?>
             </div>
         <?php
         }
@@ -35,10 +35,10 @@ defined('ABSPATH') || exit;
             <?php Lukio_User_Forms_Setup::echo_input_error_span('email', $active_options['required_error']); ?>
         </div>
         <div class="lukio_user_forms_input_wrapper luf_required<?php Lukio_User_Forms_Setup::maybe_error_class('pass1', $missing_fields); ?>">
-            <label class="lukio_user_forms_login_input_label align_start" for="user_password"><?php echo esc_html($active_options['password_label']); ?></label>
+            <label class="lukio_user_forms_login_input_label align_start" for="register_user_password"><?php echo esc_html($active_options['password_label']); ?></label>
             <?php
-            Lukio_User_Forms_Setup::echo_password_input('user_password', $active_options['password_placeholder'], 'pass1', true);
-            Lukio_User_Forms_Setup::echo_input_error_span('user_password', $active_options['required_error']);
+            Lukio_User_Forms_Setup::echo_password_input('register_user_password', $active_options['password_placeholder'], 'pass1', true);
+            Lukio_User_Forms_Setup::echo_input_error_span('register_user_password', $active_options['required_error']);
             ?>
         </div>
 
@@ -85,6 +85,8 @@ defined('ABSPATH') || exit;
         <?php do_action('lukio_user_forms_register_before_button'); ?>
         <button class="lukio_user_forms_submit" type="submit"><?php echo esc_html($active_options['register_submit']); ?></button>
     </form>
+
+    <?php do_action('lukio_user_forms_socials'); ?>
 
 </div>
 <?php

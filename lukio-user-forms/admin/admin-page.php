@@ -34,6 +34,10 @@ $active_options = $option_class->get_active_options();
                 'file_path' => LUKIO_USER_FORMS_DIR . 'admin/page-parts/extra-css.php'
             ),
             array(
+                'name' => __('Socials', 'lukio-user-forms'),
+                'file_path' => LUKIO_USER_FORMS_DIR . 'admin/page-parts/socials.php'
+            ),
+            array(
                 'name' => __('Info', 'lukio-user-forms'),
                 'file_path' => LUKIO_USER_FORMS_DIR . 'admin/page-parts/info.php'
             ),
