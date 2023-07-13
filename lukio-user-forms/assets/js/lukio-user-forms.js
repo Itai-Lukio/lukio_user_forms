@@ -386,6 +386,7 @@ jQuery(document).ready(function ($) {
 
     google.accounts.id.initialize({
       client_id: lukio_user_forms_data.google_client,
+      nonce: lukio_user_forms_data.google_nonce,
       callback: handle_google_credential_response,
     });
 

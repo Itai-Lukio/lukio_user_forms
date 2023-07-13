@@ -137,11 +137,19 @@ class Lukio_User_Forms_Google
      * 
      * @param string $token JWT google token
      *  
+     * @throws Exception invalid nonce
+     * 
      * @author Itai Dotan
      */
     public static function handle_request($token)
     {
         $token_data = self::decode_token($token);
+
+        // check nonce
+        if (wp_verify_nonce($token_data['payload']['nonce'], 'lukio_user_forms_google') === false) {
+            throw new Exception('Invalid nonce');
+        }
+
         $cert = self::get_public_google_certs($token_data['headers']['kid']);
 
         // run the google specific JWT checks

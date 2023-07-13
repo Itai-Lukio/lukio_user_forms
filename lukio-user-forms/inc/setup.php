@@ -67,6 +67,7 @@ class Lukio_User_Forms_Setup
             'password_strength' => Lukio_User_Forms_Options_Class::get_active_option('password_strength'),
             'integration_redirect' => get_site_url(),
             'google_client' => Lukio_User_Forms_Options_Class::get_google_client(),
+            'google_nonce' => wp_create_nonce('lukio_user_forms_google'),
         ));
     }
 
