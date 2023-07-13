@@ -309,11 +309,6 @@ class Lukio_User_Forms_Options_Class
                 'label' => __('Google client ID', 'lukio-user-forms'),
                 'default' => '',
             ),
-            'google_client_secret' => array(
-                'type' => 'text',
-                'label' => __('Google client secret', 'lukio-user-forms'),
-                'default' => '',
-            ),
             'extra_css' => array(
                 'type' => 'textarea',
                 'default' => ''
@@ -506,7 +501,7 @@ class Lukio_User_Forms_Options_Class
         $instance = self::get_instance();
         $active_options = $instance->get_active_options();
 
-        if ($active_options['use_google'] && $active_options['google_client'] && $active_options['google_client_secret']) {
+        if ($active_options['use_google'] && $active_options['google_client']) {
             return $active_options['google_client'];
         }
 

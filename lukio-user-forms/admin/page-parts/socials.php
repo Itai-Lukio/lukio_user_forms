@@ -7,7 +7,7 @@
 defined('ABSPATH') || exit;
 
 $socials = array(
-    'use_google' => array('google_client', 'google_client_secret'),
+    'use_google' => array('google_client'),
 );
 
 
