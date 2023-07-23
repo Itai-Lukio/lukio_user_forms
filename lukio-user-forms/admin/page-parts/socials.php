@@ -8,6 +8,7 @@ defined('ABSPATH') || exit;
 
 $socials = array(
     'use_google' => array('google_client'),
+    'use_facebook' => array('facebook_app_id', 'facebook_app_secret'),
 );
 
 

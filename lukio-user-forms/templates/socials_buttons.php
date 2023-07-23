@@ -21,5 +21,13 @@ defined('ABSPATH') || exit;
         </button>
     <?php
     }
+
+    if (Lukio_User_Forms_Options_Class::get_facebook_app_id()) {
+    ?>
+        <button class="lukio_user_forms_integrations_button facebook" type="button">
+            <span class="dashicons dashicons-facebook-alt"></span>
+        </button>
+    <?php
+    }
     ?>
 </div>

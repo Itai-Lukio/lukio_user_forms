@@ -309,6 +309,21 @@ class Lukio_User_Forms_Options_Class
                 'label' => __('Google client ID', 'lukio-user-forms'),
                 'default' => '',
             ),
+            'use_facebook' => array(
+                'type' => 'bool',
+                'label' => __('Use Facebook login', 'lukio-user-forms'),
+                'default' => false,
+            ),
+            'facebook_app_id' => array(
+                'type' => 'text',
+                'label' => __('App ID', 'lukio-user-forms'),
+                'default' => '',
+            ),
+            'facebook_app_secret' => array(
+                'type' => 'text',
+                'label' => __('App secret', 'lukio-user-forms'),
+                'default' => '',
+            ),
             'extra_css' => array(
                 'type' => 'textarea',
                 'default' => ''
@@ -503,6 +518,25 @@ class Lukio_User_Forms_Options_Class
 
         if ($active_options['use_google'] && $active_options['google_client']) {
             return $active_options['google_client'];
+        }
+
+        return false;
+    }
+
+    /**
+     * get the facebook app id
+     * 
+     * @return string|false app id when use_facebook option is active and facebook_app_id, facebook_app_secret options are not empty, false otherwise
+     * 
+     * @author Itai Dotan
+     */
+    public static function get_facebook_app_id()
+    {
+        $instance = self::get_instance();
+        $active_options = $instance->get_active_options();
+
+        if ($active_options['use_facebook'] && $active_options['facebook_app_id'] && $active_options['facebook_app_secret']) {
+            return $active_options['facebook_app_id'];
         }
 
         return false;

@@ -29,8 +29,8 @@ class Lukio_User_Forms_Setup
 
         add_shortcode('lukio_combo_form', array($this, 'combo_form'));
 
-        add_action('wp_ajax_lukio_user_forms_google_login', array($this, 'google_ajax'));
-        add_action('wp_ajax_nopriv_lukio_user_forms_google_login', array($this, 'google_ajax'));
+        add_action('wp_ajax_lukio_user_forms_integrations_request', array($this, 'handle_integrations_request'));
+        add_action('wp_ajax_nopriv_lukio_user_forms_integrations_request', array($this, 'handle_integrations_request'));
     }
 
     /**
@@ -66,8 +66,6 @@ class Lukio_User_Forms_Setup
             'password_reset' => Lukio_User_Forms_Setup::PASSWORD_RESET_VAR,
             'password_strength' => Lukio_User_Forms_Options_Class::get_active_option('password_strength'),
             'integration_redirect' => get_site_url(),
-            'google_client' => Lukio_User_Forms_Options_Class::get_google_client(),
-            'google_nonce' => wp_create_nonce('lukio_user_forms_google'),
         ));
     }
 
@@ -125,24 +123,73 @@ class Lukio_User_Forms_Setup
      */
     public function print_socials_scripts()
     {
+        // print google scripts
         if (Lukio_User_Forms_Options_Class::get_google_client()) {
 ?>
-            <script src="https://accounts.google.com/gsi/client"></script>
+            <script>
+                window.onload = function() {
+                    google.accounts.id.initialize({
+                        client_id: <?php echo "'" . Lukio_User_Forms_Options_Class::get_google_client() . "'"; ?>,
+                        nonce: <?php echo "'" . wp_create_nonce('lukio_user_forms_google') . "'"; ?>,
+                        callback: window.handle_google_credential_response,
+                    });
+                    jQuery('.lukio_user_forms_google_iframe_wrapper').each(function() {
+                        google.accounts.id.renderButton(
+                            this, {
+                                theme: "outline",
+                                size: "large"
+                            }
+                        );
+                    });
+
+                };
+            </script>
+
+            <script src="https://accounts.google.com/gsi/client" async></script>
+        <?php
+        }
+
+        // print facebook scripts
+        $facebook_app_id = Lukio_User_Forms_Options_Class::get_facebook_app_id();
+        if ($facebook_app_id) {
+        ?>
+            <script>
+                window.fbAsyncInit = function() {
+                    FB.init({
+                        appId: <?php echo "'" . $facebook_app_id . "'"; ?>,
+                        autoLogAppEvents: true,
+                        xfbml: true,
+                        version: 'v17.0'
+                    });
+                };
+            </script>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
         <?php
         }
     }
 
     /**
-     * handle the google ajax using 'Lukio_User_Forms_Google' class
+     * handle ajax request of login with social integration
      * 
      * @author Itai Dotan
      */
-    public function google_ajax()
+    public function handle_integrations_request()
     {
         $response = array();
         try {
-            require_once LUKIO_USER_FORMS_DIR . 'integrations/google.php';
-            Lukio_User_Forms_Google::handle_request($_POST['token']);
+            switch (sanitize_text_field($_POST['integration'])) {
+                case 'google':
+                    require_once LUKIO_USER_FORMS_DIR . 'integrations/google.php';
+                    Lukio_User_Forms_Google::handle_request(sanitize_text_field($_POST['token']));
+                    break;
+                case 'facebook':
+                    require_once LUKIO_USER_FORMS_DIR . 'integrations/facebook.php';
+                    Lukio_User_Forms_Facebook::handle_request(sanitize_text_field($_POST['access_token']));
+                    break;
+                default:
+                    throw new Exception('Invalid integration');
+                    break;
+            }
 
             // when no exception been thrown the user has been set
             $response['success'] = true;

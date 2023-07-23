@@ -248,6 +248,40 @@ jQuery(document).ready(function ($) {
   }
   show_reset_password_form();
 
+  /**
+   * send integration ajax and handle its response
+   * 
+   * @param {Object} integration_data integration specific data to be added to the ajax
+   * 
+   * @author Itai Dotan
+   */
+  function send_integration_ajax(integration_data) {
+    $.ajax({
+      method: 'POST',
+      url: lukio_user_forms_data.ajax_url,
+      data: Object.assign({ action: 'lukio_user_forms_integrations_request', redirect_to: lukio_user_forms_data.integration_redirect }, integration_data),
+      success: function (result) {
+        if (result) {
+          result = JSON.parse(result);
+          result.success && result.redirect != 'reload' ? location.href = result.redirect : location.reload();
+        }
+      }
+    });
+  }
+
+  /**
+   * get the CredentialResponse from google client and send it to the server
+   * 
+   * @param {object} response CredentialResponse passed from google client
+   * 
+   * @author Itai Dotan
+   */
+  function handle_google_credential_response(response) {
+    send_integration_ajax({ integration: 'google', token: response.credential });
+  };
+  // add the handler to window to make it reachable from out side
+  window.handle_google_credential_response = handle_google_credential_response;
+
   $(document)
     // toggle password input visibility on/off
     .on('click', '.lukio_user_forms_password_toggle', function () {
@@ -348,55 +382,19 @@ jQuery(document).ready(function ($) {
     .on('click', '.lukio_user_forms_combo_switch', function (e) {
       e.preventDefault();
       $(this).closest('.lukio_user_forms_combo_wrapper').find('.lukio_user_forms_combo_form_wrapper').toggleClass('hide_content');
-    });
+    })
 
-
-  /*** socials ***/
-
-  /**
-   * get the CredentialResponse from google client and send it to the server
-   * 
-   * @param {object} response CredentialResponse passed from google client
-   * 
-   * @author Itai Dotan
-   */
-  function handle_google_credential_response(response) {
-    $.ajax({
-      method: 'POST',
-      url: lukio_user_forms_data.ajax_url,
-      data: { action: 'lukio_user_forms_google_login', token: response.credential, redirect_to: lukio_user_forms_data.integration_redirect },
-      success: function (result) {
-        if (result) {
-          result = JSON.parse(result);
-          result.success && result.redirect != 'reload' ? location.href = result.redirect : location.reload();
+    // start the facebook login
+    .on('click', '.lukio_user_forms_integrations_button.facebook', function () {
+      FB.login(function (response) {
+        if (!response.authResponse) {
+          return;
         }
-      }
-    });
-  };
 
-  /**
-   * when the google_client exist initialize the client and render google buttons
-   * 
-   * @author Itai Dotan
-   */
-  function initialize_google() {
-    if (lukio_user_forms_data.google_client == false) {
-      return;
-    }
-
-    google.accounts.id.initialize({
-      client_id: lukio_user_forms_data.google_client,
-      nonce: lukio_user_forms_data.google_nonce,
-      callback: handle_google_credential_response,
-    });
-
-    $('.lukio_user_forms_google_iframe_wrapper').each(function () {
-      google.accounts.id.renderButton(
-        this,
-        { theme: "outline", size: "large" }
+        send_integration_ajax({ integration: 'facebook', access_token: response.authResponse.accessToken });
+      },
+        { scope: 'public_profile,email' }
       );
     });
-  }
-  initialize_google();
 });
 
