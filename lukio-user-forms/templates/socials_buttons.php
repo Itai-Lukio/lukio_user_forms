@@ -9,7 +9,7 @@
 defined('ABSPATH') || exit;
 
 ?>
-<div class="lukio_user_forms_integrations_buttons_wrapper">
+<div class="lukio_user_forms_integrations_buttons_wrapper hide_no_js no_js">
     <?php
     if (Lukio_User_Forms_Options_Class::get_google_client()) {
     ?>
