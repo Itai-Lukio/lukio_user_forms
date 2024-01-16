@@ -160,7 +160,14 @@ jQuery(document).ready(function ($) {
         if (result) {
           result = JSON.parse(result);
           if (result.status == 'success') {
-            switch (result.redirect) {
+            let redirect = result.redirect;
+            if (form.hasClass('login')) {
+              let redirect_overwrite = $('body').triggerHandler('lukio_user_forms_login_redirect_overwrite');
+              if (redirect_overwrite) {
+                redirect = (redirect_overwrite === true ? 'reload' : redirect_overwrite);
+              }
+            }
+            switch (redirect) {
               case undefined:
                 submit_btn.removeClass(submit_working_class);
                 break;
@@ -256,10 +263,15 @@ jQuery(document).ready(function ($) {
    * @author Itai Dotan
    */
   function send_integration_ajax(integration_data) {
+    let redirect = lukio_user_forms_data.integration_redirect,
+      redirect_overwrite = $('body').triggerHandler('lukio_user_forms_login_redirect_overwrite');
+    if (redirect_overwrite) {
+      redirect = (redirect_overwrite === true ? 'reload' : redirect_overwrite);
+    }
     $.ajax({
       method: 'POST',
       url: lukio_user_forms_data.ajax_url,
-      data: Object.assign({ action: 'lukio_user_forms_integrations_request', redirect_to: lukio_user_forms_data.integration_redirect }, integration_data),
+      data: Object.assign({ action: 'lukio_user_forms_integrations_request', redirect_to: redirect }, integration_data),
       success: function (result) {
         if (result) {
           result = JSON.parse(result);
