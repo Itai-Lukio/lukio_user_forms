@@ -178,7 +178,7 @@ jQuery(document).ready(function ($) {
                 window.location.reload();
                 break;
               default:
-                window.location.href = result.redirect;
+                window.location.href = redirect;
                 break;
             }
           } else {
