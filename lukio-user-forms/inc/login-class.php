@@ -171,7 +171,7 @@ class Lukio_User_Forms_login
             $error = $wp_error->get_error_message();
             if ($error_code == 'incorrect_password') {
                 // remove the lost password link
-                $error = trim(preg_replace('/<a.*?>[\s\S]*<\/a>/', '', $error));
+                $error = trim(preg_replace('/<a.*?>[\s\S]*<\/a>\??/', '', $error));
             }
         }
 

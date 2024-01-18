@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
     form.find('.lukio_user_forms_input_wrapper.luf_required').removeClass('error').each(function () {
       let wrapper = $(this);
 
-      wrapper.find('input, textarea').each(function () {
+      wrapper.find('input:not([type="hidden"]), textarea').each(function () {
         let input = $(this),
           type = input.attr('type'),
           valid_input = false;

@@ -36,7 +36,7 @@ defined('ABSPATH') || exit;
         </div>
 
         <?php do_action('lukio_user_forms_login_before_button'); ?>
-        <button class="lukio_user_forms_submit" type="submit"><?php echo esc_html($active_options['login_submit']); ?></button>
+        <button class="lukio_user_forms_submit" type="submit" name="login"><?php echo esc_html($active_options['login_submit']); ?></button>
     </form>
 
     <?php do_action('lukio_user_forms_socials'); ?>
