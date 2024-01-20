@@ -46,4 +46,3 @@ defined('ABSPATH') || exit;
                                                                                                                                         echo __('Lost your password?');
                                                                                                                                         ?></a>
 </div>
-<?php

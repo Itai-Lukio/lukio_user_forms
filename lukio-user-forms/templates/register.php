@@ -89,4 +89,3 @@ defined('ABSPATH') || exit;
     <?php do_action('lukio_user_forms_socials'); ?>
 
 </div>
-<?php
