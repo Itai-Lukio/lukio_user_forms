@@ -155,7 +155,9 @@ jQuery(document).ready(function ($) {
     $.ajax({
       method: 'POST',
       url: lukio_user_forms_data.ajax_url,
-      data: form.serialize(),
+      data: new FormData(form[0]),
+      contentType: false,
+      processData: false,
       success: function (result) {
         if (result) {
           result = JSON.parse(result);
