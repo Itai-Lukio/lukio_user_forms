@@ -188,6 +188,7 @@ jQuery(document).ready(function ($) {
               error.html(result.error).addClass('show');
             }
             submit_btn.removeClass(submit_working_class);
+            error[0].scrollIntoView({ behavior: "smooth", block: "start", inline: "start" });
             form.trigger('form_error', [result]);
           }
         }

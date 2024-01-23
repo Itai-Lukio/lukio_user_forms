@@ -221,7 +221,7 @@ class Lukio_User_Forms_registration
     public function register_form()
     {
         $posted_result = $this->posted_registration();
-        $posted_errors = isset($posted_result['errors']) ? $posted_result['errors'] : array();
+        $posted_errors = isset($posted_result['errors']) ? $posted_result['errors'] : '';
         $missing_fields = isset($posted_result['fields']) ? $posted_result['fields'] : array();
 
         $option_class = Lukio_User_Forms_Options_Class::get_instance();
