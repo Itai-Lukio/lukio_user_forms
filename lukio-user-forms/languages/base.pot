@@ -1,0 +1,553 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Package Name\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-20 11:06+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin/admin-page.php:13 inc/admin-page-functions.php:32
+#: inc/admin-page-functions.php:33
+msgid "Lukio user forms"
+msgstr ""
+
+#: admin/admin-page.php:21
+msgid "General Settings"
+msgstr ""
+
+#: admin/admin-page.php:25
+msgid "Login Settings"
+msgstr ""
+
+#: admin/admin-page.php:29
+msgid "Register Settings"
+msgstr ""
+
+#: admin/admin-page.php:33
+msgid "Extra css"
+msgstr ""
+
+#: admin/admin-page.php:37
+msgid "Socials"
+msgstr ""
+
+#: admin/admin-page.php:41
+msgid "Info"
+msgstr ""
+
+#: admin/admin-page.php:79
+msgid "Save Settings"
+msgstr ""
+
+#: admin/admin-page.php:80
+msgid "Reset all Settings"
+msgstr ""
+
+#: admin/page-parts/general-options.php:32
+msgid "No minimum"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: admin/page-parts/general-options.php:34
+msgctxt "password strength"
+msgid "Very weak"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: admin/page-parts/general-options.php:36
+msgctxt "password strength"
+msgid "Weak"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: admin/page-parts/general-options.php:38
+msgctxt "password strength"
+msgid "Medium"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: admin/page-parts/general-options.php:40
+msgctxt "password strength"
+msgid "Strong"
+msgstr ""
+
+#: admin/page-parts/general-options.php:57
+msgid "Encapsulate with '{{' and '}}' to use bold. {{Bold text}}"
+msgstr ""
+
+#: admin/page-parts/general-options.php:76
+msgid ""
+"* Registration errors are not editable due to WordPress not fully separating "
+"the error types"
+msgstr ""
+
+#: admin/page-parts/register-options.php:37
+#: admin/page-parts/register-options.php:53
+msgid "Field label"
+msgstr ""
+
+#: admin/page-parts/register-options.php:55
+msgid "Field placeholder"
+msgstr ""
+
+#: admin/page-parts/register-options.php:68
+msgid "Checkbox set with an empty meta or text, will not be saved"
+msgstr ""
+
+#: admin/page-parts/register-options.php:69
+msgid "Meta can only include lowercase English characters and underscores"
+msgstr ""
+
+#: admin/page-parts/register-options.php:70
+msgid "Meta containing invalid characters will not be saved"
+msgstr ""
+
+#: admin/page-parts/register-options.php:71
+msgid "It is highly recommended to prefix metas, {prefix}_{meta_name}"
+msgstr ""
+
+#: admin/page-parts/register-options.php:82
+msgid "Add checkbox"
+msgstr ""
+
+#: inc/admin-page-functions.php:187
+msgid "Settings"
+msgstr ""
+
+#: inc/admin-page-functions.php:257
+msgid "Click to copy"
+msgstr ""
+
+#: inc/admin-page-functions.php:258
+msgid "Copied"
+msgstr ""
+
+#: inc/admin-page-functions.php:285
+msgid "Make checkbox required"
+msgstr ""
+
+#: inc/admin-page-functions.php:286
+msgid "Meta key"
+msgstr ""
+
+#: inc/admin-page-functions.php:288
+msgid "Checkbox text"
+msgstr ""
+
+#: inc/admin-page-functions.php:291
+msgid "Remove checkbox"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/login-class.php:238
+#, php-format
+msgid "This password reset request originated from the IP address %s."
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/login-class.php:316 inc/options.php:212
+msgid "The password cannot be a space or all spaces."
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/login-class.php:322 inc/options.php:132 inc/options.php:218
+msgid "<strong>Error:</strong> The passwords do not match."
+msgstr ""
+
+#: inc/options.php:96
+msgid "User login"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:98
+msgid "Username or Email Address"
+msgstr ""
+
+#: inc/options.php:102
+msgid "User login placeholder"
+msgstr ""
+
+#: inc/options.php:103
+msgid "CoolNickname"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:108 inc/options.php:110
+msgid "Password"
+msgstr ""
+
+#: inc/options.php:114
+msgid "Password placeholder"
+msgstr ""
+
+#: inc/options.php:115
+msgid "ItsASecret"
+msgstr ""
+
+#: inc/options.php:119
+msgid "Required error"
+msgstr ""
+
+#: inc/options.php:120
+msgid "This input is required"
+msgstr ""
+
+#: inc/options.php:124
+msgid "Password repeat label"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:126
+msgid "Confirm new password"
+msgstr ""
+
+#: inc/options.php:130
+msgid "Passwords don't match"
+msgstr ""
+
+#: inc/options.php:136
+msgid "Switch to register"
+msgstr ""
+
+#: inc/options.php:137
+msgid "Don't have an account?"
+msgstr ""
+
+#: inc/options.php:141
+msgid "Switch to login"
+msgstr ""
+
+#: inc/options.php:142
+msgid "Already have an account?"
+msgstr ""
+
+#: inc/options.php:146
+msgid "Minimum allowed password strength"
+msgstr ""
+
+#: inc/options.php:152
+msgid "Use custom errors"
+msgstr ""
+
+#: inc/options.php:157
+msgid "Empty username error"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:159
+msgid "<strong>Error:</strong> The username field is empty."
+msgstr ""
+
+#: inc/options.php:163
+msgid "Empty password error"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:165
+msgid "<strong>Error:</strong> The password field is empty."
+msgstr ""
+
+#: inc/options.php:169
+msgid "Incorrect username error"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:171
+msgid ""
+"<strong>Error:</strong> Unknown username. Check again or try your email "
+"address."
+msgstr ""
+
+#: inc/options.php:175
+msgid "Incorrect email error"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:177
+msgid ""
+"<strong>Error:</strong> Unknown email address. Check again or try your "
+"username."
+msgstr ""
+
+#: inc/options.php:181
+msgid "Incorrect password error"
+msgstr ""
+
+#: inc/options.php:182
+msgid "<strong>Error:</strong> The password you entered is incorrect."
+msgstr ""
+
+#: inc/options.php:186
+msgid "Reset password empty error"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:188
+msgid "<strong>Error:</strong> Please enter a username or email address."
+msgstr ""
+
+#: inc/options.php:192
+msgid "Reset password no account error"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:194
+msgid ""
+"<strong>Error:</strong> There is no account with that username or email "
+"address."
+msgstr ""
+
+#: inc/options.php:198
+msgid "Invalid reset key error"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:200 inc/options.php:206
+msgid "Invalid key."
+msgstr ""
+
+#: inc/options.php:204
+msgid "Expired reset key error"
+msgstr ""
+
+#: inc/options.php:210
+msgid "Password empty space error"
+msgstr ""
+
+#: inc/options.php:216
+msgid "Password mismatch error"
+msgstr ""
+
+#: inc/options.php:223
+msgid "Login title"
+msgstr ""
+
+#: inc/options.php:224
+msgid "Login Form"
+msgstr ""
+
+#: inc/options.php:228
+msgid "Login submit"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:230
+msgid "Log In"
+msgstr ""
+
+#: inc/options.php:234
+msgid "Login remember label"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:236
+msgid "Remember Me"
+msgstr ""
+
+#: inc/options.php:240
+msgid "Lost password title"
+msgstr ""
+
+#: inc/options.php:241
+msgid "Lost password"
+msgstr ""
+
+#: inc/options.php:245
+msgid "Lost password submit"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:247
+msgid "Get New Password"
+msgstr ""
+
+#: inc/options.php:251
+msgid "Reset password title"
+msgstr ""
+
+#: inc/options.php:252
+msgid "Reset password"
+msgstr ""
+
+#: inc/options.php:256
+msgid "Lost password success message"
+msgstr ""
+
+#: inc/options.php:257
+msgid "Reset email has been sent to your email address"
+msgstr ""
+
+#: inc/options.php:261
+msgid "Password reset success message"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:263
+msgid "Your password has been reset."
+msgstr ""
+
+#: inc/options.php:267
+msgid "Save Password button"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:269
+msgid "Save Password"
+msgstr ""
+
+#: inc/options.php:274
+msgid "Register title"
+msgstr ""
+
+#: inc/options.php:275
+msgid "Register Form"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:280 inc/options.php:282
+msgid "Email&nbsp;Address:"
+msgstr ""
+
+#: inc/options.php:286
+msgid "Email placeholder"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:292
+msgid "Register submit"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:294
+msgid "Register"
+msgstr ""
+
+#: inc/options.php:298
+msgid "Extra register checkbox"
+msgstr ""
+
+#: inc/options.php:304
+msgid "Use Google login"
+msgstr ""
+
+#: inc/options.php:309
+msgid "Google client ID"
+msgstr ""
+
+#: inc/options.php:314
+msgid "Use Facebook login"
+msgstr ""
+
+#: inc/options.php:319
+msgid "App ID"
+msgstr ""
+
+#: inc/options.php:324
+msgid "App secret"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:346
+msgid "Username"
+msgstr ""
+
+#: inc/options.php:350
+msgid "Repeat password"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:355
+msgid "First Name"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:359
+msgid "Last Name"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/options.php:363
+msgid "Nickname"
+msgstr ""
+
+#: inc/options.php:372
+#, php-format
+msgid "Active field: %s"
+msgstr ""
+
+#: inc/options.php:391
+msgid "Placeholder"
+msgstr ""
+
+#: inc/options.php:397
+msgid "Make field required"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/setup.php:63 inc/setup.php:268
+msgid "Show password"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/setup.php:65
+msgid "Hide password"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: inc/setup.php:306
+msgid "Close"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: templates/login.php:46
+msgid "Lost your password?"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: templates/lost_email.php:16
+msgid "Someone has requested a password reset for the following account:"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: templates/lost_email.php:21
+#, php-format
+msgid "Site Name: %s"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: templates/lost_email.php:26
+#, php-format
+msgid "Username: %s"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: templates/lost_email.php:31
+msgid "If this was a mistake, ignore this email and nothing will happen."
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: templates/lost_email.php:36
+msgid "To reset your password, visit the following address:"
+msgstr ""
+
+#. TRANSLATORS: use wordpress defaul. does not need translation
+#: templates/lost_password.php:34
+msgid "Log in"
+msgstr ""
+
+msgid "Itai Dotan @Lukio"
+msgstr ""
+
+msgid "Easy login and register forms including lost password functionality."
+msgstr ""
