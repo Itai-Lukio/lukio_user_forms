@@ -206,7 +206,6 @@ jQuery(document).ready(function ($) {
    */
   function register_checks(form) {
     // check the repeat password only when the input exsist
-    console.log(form.find('input[name="pass2"]').length)
     if (form.find('input[name="pass2"]').length == 0) {
       $password_check = true;
     } else {
