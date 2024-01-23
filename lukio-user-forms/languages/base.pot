@@ -546,6 +546,9 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
+msgid "Lukio User Forms"
+msgstr ""
+
 msgid "Itai Dotan @Lukio"
 msgstr ""
 

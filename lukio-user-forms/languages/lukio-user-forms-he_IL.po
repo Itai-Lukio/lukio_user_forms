@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-20 11:06+0200\n"
-"PO-Revision-Date: 2024-01-23 09:47+0200\n"
+"PO-Revision-Date: 2024-01-23 09:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -59,25 +59,25 @@ msgstr "איפוס הגדרות"
 msgid "No minimum"
 msgstr "ללא מינימום"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: admin/page-parts/general-options.php:34
 msgctxt "password strength"
 msgid "Very weak"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: admin/page-parts/general-options.php:36
 msgctxt "password strength"
 msgid "Weak"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: admin/page-parts/general-options.php:38
 msgctxt "password strength"
 msgid "Medium"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: admin/page-parts/general-options.php:40
 msgctxt "password strength"
 msgid "Strong"
@@ -150,18 +150,18 @@ msgstr "צ'אקבוקס טקסט"
 msgid "Remove checkbox"
 msgstr "הסרת צ'אקבוקד"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/login-class.php:238
 #, php-format
 msgid "This password reset request originated from the IP address %s."
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/login-class.php:316 inc/options.php:212
 msgid "The password cannot be a space or all spaces."
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/login-class.php:322 inc/options.php:132 inc/options.php:218
 msgid "<strong>Error:</strong> The passwords do not match."
 msgstr ""
@@ -170,7 +170,7 @@ msgstr ""
 msgid "User login"
 msgstr "התחברות משתמש"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:98
 msgid "Username or Email Address"
 msgstr ""
@@ -183,7 +183,7 @@ msgstr "ממלא מקום שם משתמש"
 msgid "CoolNickname"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:108 inc/options.php:110
 msgid "Password"
 msgstr ""
@@ -208,7 +208,7 @@ msgstr "השדה הזה הוא חובה"
 msgid "Password repeat label"
 msgstr "תגית חזרה על סיסמה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:126
 msgid "Confirm new password"
 msgstr ""
@@ -245,7 +245,7 @@ msgstr "שימוש בהודעות שגיאה מותאמות"
 msgid "Empty username error"
 msgstr "שגיאת שם משתמש ריק"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:159
 msgid "<strong>Error:</strong> The username field is empty."
 msgstr ""
@@ -254,7 +254,7 @@ msgstr ""
 msgid "Empty password error"
 msgstr "שגיאת סיסמה ריקה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:165
 msgid "<strong>Error:</strong> The password field is empty."
 msgstr ""
@@ -263,7 +263,7 @@ msgstr ""
 msgid "Incorrect username error"
 msgstr "שגיאת שם משתמש שגוי"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:171
 msgid ""
 "<strong>Error:</strong> Unknown username. Check again or try your email "
@@ -274,7 +274,7 @@ msgstr ""
 msgid "Incorrect email error"
 msgstr "שגיאת אימייל שגוי"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:177
 msgid ""
 "<strong>Error:</strong> Unknown email address. Check again or try your "
@@ -293,7 +293,7 @@ msgstr "<strong>שגיאה:</strong> הסיסמה שהכנסתה לא נכונה
 msgid "Reset password empty error"
 msgstr "שגיאת שיחזור סיסמה ריק"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:188
 msgid "<strong>Error:</strong> Please enter a username or email address."
 msgstr ""
@@ -302,7 +302,7 @@ msgstr ""
 msgid "Reset password no account error"
 msgstr "שגיאת משתמש לא קיים"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:194
 msgid ""
 "<strong>Error:</strong> There is no account with that username or email "
@@ -313,7 +313,7 @@ msgstr ""
 msgid "Invalid reset key error"
 msgstr "שגיאת קוד איפוס סיסמה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:200 inc/options.php:206
 msgid "Invalid key."
 msgstr ""
@@ -342,7 +342,7 @@ msgstr "טופס התחברות"
 msgid "Login submit"
 msgstr "כפתור התחברות"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:230
 msgid "Log In"
 msgstr ""
@@ -351,7 +351,7 @@ msgstr ""
 msgid "Login remember label"
 msgstr "תגית זכור משתמש"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:236
 msgid "Remember Me"
 msgstr ""
@@ -368,7 +368,7 @@ msgstr "איפוס סיסמה"
 msgid "Lost password submit"
 msgstr "כפתור איפוס סיסמה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:247
 msgid "Get New Password"
 msgstr ""
@@ -393,7 +393,7 @@ msgstr "הודעת איפוס סיסמה נשלחה למייל שלך"
 msgid "Password reset success message"
 msgstr "הודעת סיסמה חדשה נקלטה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:263
 msgid "Your password has been reset."
 msgstr ""
@@ -402,7 +402,7 @@ msgstr ""
 msgid "Save Password button"
 msgstr "כפתור שמור סיסמה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:269
 msgid "Save Password"
 msgstr ""
@@ -415,7 +415,7 @@ msgstr "כותרת התחברות"
 msgid "Register Form"
 msgstr "טופס הרשמה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:280 inc/options.php:282
 msgid "Email&nbsp;Address:"
 msgstr ""
@@ -424,12 +424,12 @@ msgstr ""
 msgid "Email placeholder"
 msgstr "ממלא מקום אימייל"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:292
 msgid "Register submit"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:294
 msgid "Register"
 msgstr ""
@@ -458,7 +458,7 @@ msgstr ""
 msgid "App secret"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:346
 msgid "Username"
 msgstr ""
@@ -467,17 +467,17 @@ msgstr ""
 msgid "Repeat password"
 msgstr "חזור על הסיסמה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:355
 msgid "First Name"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:359
 msgid "Last Name"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/options.php:363
 msgid "Nickname"
 msgstr ""
@@ -495,57 +495,60 @@ msgstr "ממלא מקום"
 msgid "Make field required"
 msgstr "הפוך שדה לחובה"
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/setup.php:63 inc/setup.php:268
 msgid "Show password"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/setup.php:65
 msgid "Hide password"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: inc/setup.php:306
 msgid "Close"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: templates/login.php:46
 msgid "Lost your password?"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: templates/lost_email.php:16
 msgid "Someone has requested a password reset for the following account:"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: templates/lost_email.php:21
 #, php-format
 msgid "Site Name: %s"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: templates/lost_email.php:26
 #, php-format
 msgid "Username: %s"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: templates/lost_email.php:31
 msgid "If this was a mistake, ignore this email and nothing will happen."
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: templates/lost_email.php:36
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#.    TRANSLATORS: use wordpress defaul. does not need translation
+#. TRANSLATORS: use wordpress defaul. does not need translation
 #: templates/lost_password.php:34
 msgid "Log in"
 msgstr ""
+
+msgid "Lukio User Forms"
+msgstr "לוקיו טפסי משתמש"
 
 msgid "Itai Dotan @Lukio"
 msgstr "איתי דותן @לוקיו"
