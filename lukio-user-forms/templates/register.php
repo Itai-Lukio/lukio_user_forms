@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
                                                 echo ' show';
                                             }; ?>"><?php echo $posted_errors; ?></p>
 
-    <form class="lukio_user_forms_form register" action="" method="post">
+    <form class="lukio_user_forms_form register" action="" method="post" enctype="multipart/form-data">
         <?php
         if ($use_id) {
         ?>
